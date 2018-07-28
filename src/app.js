@@ -28,7 +28,6 @@ mongoose.Promise = global.Promise;
 // // const branchesRoutes = require('./api/routes/branches');
 // // const channelsRoutes = require('./api/routes/channels');
 const customerRoutes = require('./pilot/routes/customers');
-const pricingsRoutes = require('./pilot/routes/pricings');
 
 // // app.use((req,res,next) => {
 // //     res.status(200).json({
@@ -64,7 +63,6 @@ const pricingsRoutes = require('./pilot/routes/pricings');
 // app.use('/branches',branchesRoutes);
 // app.use('/channels',channelsRoutes);
  app.use('/customers',customerRoutes);
- app.use('/pricing',pricingsRoutes);
 
 
 // app.use((req, res, next) =>{

@@ -3,12 +3,6 @@ const router = express.Router();
 
 const Customer = require('../model/customer');
 
-const Account = require('../model/account');
-
-//const multer = require('multer');
-
-//const checkAuth = require('../middleware/check-auth');
-
 const customerService = require('../services/customer-service');
 
 
