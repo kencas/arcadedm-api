@@ -26,7 +26,7 @@ mongoose.Promise = global.Promise;
 // // const acctypeRoutes = require('./api/routes/acctypes');
 // // const ledgerRoutes = require('./api/routes/ledgers');
 // // const branchesRoutes = require('./api/routes/branches');
-// // const channelsRoutes = require('./api/routes/channels');
+const merchantRoutes = require('./pilot/routes/merchants');
 const customerRoutes = require('./pilot/routes/customers');
 
 // // app.use((req,res,next) => {
@@ -61,7 +61,7 @@ const customerRoutes = require('./pilot/routes/customers');
 // app.use('/acctypes',acctypeRoutes);
 // app.use('/ledgers',ledgerRoutes);
 // app.use('/branches',branchesRoutes);
-// app.use('/channels',channelsRoutes);
+ app.use('/merchants',merchantRoutes);
  app.use('/customers',customerRoutes);
 
 

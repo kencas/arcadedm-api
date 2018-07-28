@@ -1,7 +1,7 @@
-const Customer = require('../model/customer');
+const Merchant = require('../model/merchant');
 const Verifier =  require('../model/verifier');
 
-module.exports = class CustomerService{ 
+module.exports = class MerchantService{ 
     
     constructor() {
       
@@ -18,12 +18,13 @@ module.exports = class CustomerService{
         const updateOps = {};
 
       return new Promise(async(resolve, reject) => {
-        const customer = new Customer({
-            firstname: cust.firstname,
-            lastname: cust.lastname,
-            countryCode: cust.countryCode,
+        const customer = new Merchant({
+            name: cust.name,
+            address: cust.address,
+            location: cust.location,
+            state: cust.state,
             email: cust.email,
-            phoneno: Number(cust.phoneno),
+            phoneno: cust.phoneno,
             code: cust.code
         });
 
