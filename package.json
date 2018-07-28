@@ -6,7 +6,6 @@
   "scripts": {
     "clean": "rm -rf build && mkdir build",
     "dev": "nodemon src/server.js --exec babel-node",
-    "build-babel": "babel -d ./build ./src -s",
     "build": "npm run clean && npm run build-babel",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node ./src/server.js",
