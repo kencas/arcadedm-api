@@ -25,7 +25,7 @@ router.get('/',async(req, res, next) => {
 router.post('/signup',(req, res, next) => {
 
     
-    customerService.create(req.body)
+    merchantService.create(req.body)
     .then(result => {
         console.log(result),
         res.status(200).json(result);
@@ -46,7 +46,7 @@ router.get('/:id', async(req, res, next) => {
 
     try
     {
-        let customer = await customerService.get(id);
+        let customer = await merchantService.get(id);
        
         res.status(200).json(customer);
     }

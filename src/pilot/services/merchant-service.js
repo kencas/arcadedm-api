@@ -1,5 +1,4 @@
-const Customer = require('../model/customer');
-const Verifier =  require('../model/verifier');
+const Merchant= require('../model/merchant');
 
 module.exports = class CustomerService{ 
     
@@ -68,19 +67,5 @@ module.exports = class CustomerService{
     
   }
 
-  static async createVerifier(countryCode,phoneno)
-  {
-      const code = this.getRandomNumber(1001,9999);
-    const verifier = new Verifier({
-        countryCode: countryCode,
-        phoneno: phoneno,
-        code: code
-    });
-
-    return await verifier.save();
-  }
-
-  static getRandomNumber(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+  
   }
