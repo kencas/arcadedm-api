@@ -1,3 +1,3 @@
 # arcadedm-api
 
-ArcadeDM API
+ArcadeDM APIs
