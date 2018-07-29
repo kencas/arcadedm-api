@@ -25,9 +25,9 @@ mongoose.Promise = global.Promise;
 // // const accountRoutes = require('./api/routes/accounts');
 // // const acctypeRoutes = require('./api/routes/acctypes');
 // // const ledgerRoutes = require('./api/routes/ledgers');
-// // const branchesRoutes = require('./api/routes/branches');
+const productsRoutes = require('./pilot/routes/products');
 const merchantRoutes = require('./pilot/routes/merchants');
-const customerRoutes = require('./pilot/routes/customers');
+const categoriesRoutes = require('./pilot/routes/categories');
 
 // // app.use((req,res,next) => {
 // //     res.status(200).json({
@@ -60,9 +60,9 @@ const customerRoutes = require('./pilot/routes/customers');
 // app.use('/customers',customerRoutes);
 // app.use('/acctypes',acctypeRoutes);
 // app.use('/ledgers',ledgerRoutes);
-// app.use('/branches',branchesRoutes);
+ app.use('/categories',categoriesRoutes);
  app.use('/merchants',merchantRoutes);
- app.use('/customers',customerRoutes);
+ app.use('/products',productsRoutes);
 
 
 // app.use((req, res, next) =>{

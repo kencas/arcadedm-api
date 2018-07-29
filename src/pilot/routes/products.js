@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const Customer = require('../model/customer');
+const Product = require('../model/product');
 
-const customerService = require('../services/customer-service');
+const productService = require('../services/product-service');
 
 
 router.get('/',async(req, res, next) => {
     
     try
     {
-        let customers;
+        let products;
 
-        customers = await customerService.list();
-        res.status(200).json(customers);
+        products = await productService.list();
+        res.status(200).json(products);
       } 
       catch (err) 
       {
@@ -22,10 +22,26 @@ router.get('/',async(req, res, next) => {
 });
 
 
-router.post('/signup',(req, res, next) => {
+router.get('/list',async(req, res, next) => {
+    
+    try
+    {
+        let products;
+
+        products = await productService.list();
+        res.status(200).json(products);
+      } 
+      catch (err) 
+      {
+        return res.status(500).send(err);
+      }
+});
+
+
+router.post('/',(req, res, next) => {
 
     
-    customerService.create(req.body)
+    productService.create(req.body)
     .then(result => {
         console.log(result),
         res.status(200).json(result);
@@ -39,23 +55,6 @@ router.post('/signup',(req, res, next) => {
 });
 
 
-router.post('/startverify',async(req, res, next) => {
-
-    var verify = await customerService.verify(req.body.countryCode,Number(req.body.phoneno));
-
-    res.status(200).json(verify);
-
-});
-
-
-router.post('/doverify',async(req, res, next) => {
-
-    var verify = await customerService.doverify(req.body.countryCode,Number(req.body.phoneno), req.body.code);
-
-    res.status(200).json(verify);
-
-});
-
 
 router.get('/:id', async(req, res, next) => {
 
@@ -63,10 +62,9 @@ router.get('/:id', async(req, res, next) => {
 
     try
     {
-        let customer = await customerService.get(id);
-        let accounts = await loadAccounts(customer);
-        //customer.accounts = accounts;
-        res.status(200).json(customer);
+        let product = await productService.get(id);
+       
+        res.status(200).json(product);
     }
     catch (err) 
       {
@@ -74,17 +72,6 @@ router.get('/:id', async(req, res, next) => {
       }
 });
 
-var loadAccounts = async function(customer)
-{
-    let accounts = await Account.find({
-        customer: customer._id
-      })
-    .populate('acctype ledger','name accountNo')
-    .select('acctype accountNo balance')
-    .exec();
-
-    return accounts;
-}
 
 router.patch('/:id',(req, res, next) => {
 
@@ -96,15 +83,15 @@ router.patch('/:id',(req, res, next) => {
         updateOps[ops.propName] = ops.value;
     }
 
-    Customer.update({_id: id},{$set: updateOps})
+    Product.update({_id: id},{$set: updateOps})
     .exec()
     .then(result => {
         console.log({
-            message: "Customer record updated successfuly",
+            message: "Product record updated successfuly",
             flag: true,
         }),
         res.status(200).json({
-            message: "Customer record updated successfuly",
+            message: "Product record updated successfuly",
             flag: true,
         });
     })
@@ -122,12 +109,12 @@ router.delete('/:id',(req, res, next) => {
 
     const id = req.params.id;
 
-    Customer.remove({_id: id})
+    Product.remove({_id: id})
     .exec()
     .then(result => {
         console.log(result),
         res.status(200).json({
-            message: "Customer record deleted successfuly",
+            message: "Product record deleted successfuly",
             flag: true,
         });
     })

@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 
 var MerchantSchema = new Schema(
     {
+        products: [{type : Schema.Types.ObjectId, ref: 'Product'}],
         name : {type: String, required: true},
         address : {type: String, required: true},
         location : {type: String, required: true},

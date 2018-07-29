@@ -1,19 +1,19 @@
 const express = require('express');
 const router = express.Router();
 
-const Merchant = require('../model/merchant');
+const Category = require('../model/category');
 
-const merchantService = require('../services/merchant-service');
+const categoryService = require('../services/category-service');
 
 
 router.get('/',async(req, res, next) => {
     
     try
     {
-        let merchants;
+        let categories;
 
-        merchants = await merchantService.list();
-        res.status(200).json(merchants);
+        categories = await categoryService.list();
+        res.status(200).json(categories);
       } 
       catch (err) 
       {
@@ -25,10 +25,10 @@ router.get('/list',async(req, res, next) => {
     
     try
     {
-        let merchants;
+        let categories;
 
-        merchants = await merchantService.list();
-        res.status(200).json(merchants);
+        categories = await categoryService.list();
+        res.status(200).json(categories);
       } 
       catch (err) 
       {
@@ -40,7 +40,7 @@ router.get('/list',async(req, res, next) => {
 router.post('/',(req, res, next) => {
 
     
-    merchantService.create(req.body)
+    categoryService.create(req.body)
     .then(result => {
         console.log(result),
         res.status(200).json(result);
@@ -61,9 +61,9 @@ router.get('/:id', async(req, res, next) => {
 
     try
     {
-        let customer = await merchantService.get(id);
+        let category = await categoryService.get(id);
        
-        res.status(200).json(customer);
+        res.status(200).json(category);
     }
     catch (err) 
       {
@@ -82,15 +82,15 @@ router.patch('/:id',(req, res, next) => {
         updateOps[ops.propName] = ops.value;
     }
 
-    Merchant.update({_id: id},{$set: updateOps})
+    Category.update({_id: id},{$set: updateOps})
     .exec()
     .then(result => {
         console.log({
-            message: "Merchant record updated successfuly",
+            message: "Category record updated successfuly",
             flag: true,
         }),
         res.status(200).json({
-            message: "Merchant record updated successfuly",
+            message: "Category record updated successfuly",
             flag: true,
         });
     })
@@ -108,12 +108,12 @@ router.delete('/:id',(req, res, next) => {
 
     const id = req.params.id;
 
-    Merchant.remove({_id: id})
+    Category.remove({_id: id})
     .exec()
     .then(result => {
         console.log(result),
         res.status(200).json({
-            message: "Merchant record deleted successfuly",
+            message: "Category record deleted successfuly",
             flag: true,
         });
     })
