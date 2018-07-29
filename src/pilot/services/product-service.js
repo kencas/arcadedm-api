@@ -52,7 +52,7 @@ module.exports = class ProductService{
 
       
        
-        return Product.find().populate('merchant');
+        return Product.find().populate('merchant category');
 
       
     }
